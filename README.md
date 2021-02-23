@@ -12,9 +12,14 @@ In order to test this project you may need :
 ## Execute these commands:
 
 ### Install all dependecies needed
-- composer install 
+- composer install
+
+### Create the db in your machine
+- Remember to config the '.env.example' file with your environment settings in MySQL and rename it to '.env'
+- Execute: php artisan migrate
 
 ### Run the start script
 - php artisan serve
 ###
 (This README.md may update while this project is being built)
+Sign: There may be some english errors, I'm brazilian and writing in english to practice. 
