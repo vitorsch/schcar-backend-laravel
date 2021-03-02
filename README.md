@@ -1,7 +1,7 @@
 # Schcar Laravel
 
 ## About this Project
-This project is a application made using laravel and sql as DB. Which will be used to integrate with react (Front-end). The final goal is to serve as authetication, and manipulation of data for a webstore of cars.
+This project is a application made using laravel and sql as DB. Which will be used to integrate with react (Front-end). The final goal is to serve as authetication, and manipulation of data for a webstore of vehicles.
 
 ## Clone and start
 In order to test this project you may need :
