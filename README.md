@@ -13,6 +13,7 @@ In order to test this project you may need :
 
 ### Install all dependecies needed
 - composer install
+- composer require ixudra/curl ( may need change php.ini memory_limit to 2G )
 
 ### Create the db in your machine
 - Remember to config the '.env.example' file with your environment settings in MySQL and rename it to '.env'
