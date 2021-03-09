@@ -18,7 +18,7 @@ class VehicleUploadController extends Controller
         $this->user = Auth()->guard('api')->user();
     }
 
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $file = $request->file('file');
         $fileName = md5(uniqid(time())) . strrchr($file->getClientOriginalName(), '.'); // criar nome aleatório para as imagens(md5) e também o formato da imagem
@@ -58,7 +58,7 @@ class VehicleUploadController extends Controller
     public function update(Request $request)
     {
         foreach ($request->order as $order => $id) {
-            $position = Vehicle_photos::where('user_id', $this->user->id->find($id));
+            $position = Vehicle_photos::where('user_id', $this->user->id)->find($id);
             $position->order = $order;
             $position->save();
         }
