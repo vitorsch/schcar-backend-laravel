@@ -10,9 +10,9 @@ class Vehicle extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'user_id'
-    ];
+    // protected $fillable = [
+    //     'user_id',
+    // ];
     
     protected $casts = [
         'vehicle_features' => Json::class,
@@ -32,9 +32,7 @@ class Vehicle extends Model
         'vehicle_regdate' => 'required',
         'vehicle_fuel' => 'required',
         'vehicle_price' => 'required',
-        'vehicle_photos' => 'required',
         'vehicle_photos' => 'exists:vehicle_photos,vehicle_id',
-        'city' => 'required',
     ];
 
     public function vehicle_photos() {
