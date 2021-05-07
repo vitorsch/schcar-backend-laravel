@@ -20,6 +20,7 @@ use App\Models\Vehicle_regdate;
 use App\Models\Vehicle_type;
 use App\Models\Vehicle_version;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VehiclesController extends Controller
 {
@@ -67,6 +68,8 @@ class VehiclesController extends Controller
                 'status' => 0
             ]);
 
+        $vehicle = $vehicle->fresh('vehicle_photos');
+
         return array_merge(['vehicle' => $vehicle], $this->getData());
     }
 
@@ -78,7 +81,30 @@ class VehiclesController extends Controller
     
     public function update(Request $request, $id)
     {
-        //
+        $request['vehicle_photos'] = $id;
+        $validator = Validator::make($request->all(), Vehicle::$rules);
+
+        if($validator->fails()) {
+            return response ()->json(['error' => $validator->errors()], 200);
+        }
+
+        $vehicle = Vehicle::where('user_id', $this->user->id)
+            ->find($id);
+        
+        if($vehicle->id) {
+            $vehicle->fill($request->all());
+            $vehicle->status = 1;
+            $vehicle->uf_url = $this->validateUrl($request->uf);
+            $vehicle->city_url = $this-> validateUrl($request->city);
+
+            if($vehicle->save()){
+                return $this->success('Dados atualizados com sucesso');
+            }
+
+            return $this->error('Erro ao atualizar dados');
+        }
+
+        return $this->error('Veículo não encontrado');
     }
 
     public function destroy($id)
